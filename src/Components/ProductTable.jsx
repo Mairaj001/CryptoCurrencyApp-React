@@ -2,18 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { useSearch } from '../Context/Search';
 const ProductTable = ({ currency = [] }) => {
   const {value}=useSearch();
-
+  
+  const [originalData, setOriginalData] = useState([]);
   const [coin, setCoin] = useState([]);
+
+  useEffect(() => {
+   
+    setOriginalData(currency);
+  }, [currency]);
   
   useEffect(() => {
-    let filteredCoins = [];
-    if (value && typeof value === 'string') {
-        filteredCoins = currency.filter((item) => item.name.toLowerCase().includes(value.toLowerCase()));
-    } else {
-     filteredCoins = [...currency];
-    } 
-   setCoin(filteredCoins);
-  }, [currency,value]);
+    
+    let filteredCoins = value !== null ? originalData.filter((item) => item.name.toLowerCase().includes(value.toLowerCase())) : originalData;
+    
+    
+    setCoin(filteredCoins);
+  }, [value, originalData]);
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">

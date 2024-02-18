@@ -13,10 +13,15 @@ export default function Header() {
     const {setValue}=useSearch();
     
     const handleValue=(e)=>{
-      setSearchedValue(e.target.value)
-      setValue(searchedValue)
+      const a=e.target.value;
+      
+      setSearchedValue(a)
+      
+      console.log("serached value"+searchedValue)
     }
-
+    useEffect(()=>{
+      setValue(searchedValue)
+    },[searchedValue])
     const HandleChange=(e)=>{
         let status=e.currentTarget.checked;
         status?settheme("dark"):settheme("light")
@@ -83,10 +88,10 @@ export default function Header() {
               </svg>
             </div>
             <input
-              type="search"
+              type="text"
               id="default-search"
               className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search Crypto"
+              placeholder=" "
               value={searchedValue}
               onChange={handleValue}
               required
