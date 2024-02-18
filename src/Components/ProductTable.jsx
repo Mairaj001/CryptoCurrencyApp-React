@@ -23,7 +23,7 @@ const ProductTable = ({ currency = [] }) => {
             <th scope="col" className="px-4 py-3">
               Coin Name
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-9 py-3">
               Market Cap
             </th>
             <th scope="col" className="px-6 py-3">
@@ -46,9 +46,9 @@ const ProductTable = ({ currency = [] }) => {
                 </a>
                 {name}
               </th>
-              <td className="px-9 py-4">{marketCap}</td>
-              <td className="px-6 py-4">${Math.round(price)}</td>
-              <td className="px-9 py-4 text-red-500">{change}</td>
+              <td className="px-9 py-4">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(marketCap)}</td>
+              <td className="px-6 py-4">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(price)}</td>
+              <td className="px-9 py-4 text-red-500">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(change)}</td>
             </tr>
           </tbody>
         ))}
