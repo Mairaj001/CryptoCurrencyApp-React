@@ -48,7 +48,13 @@ const ProductTable = ({ currency = [] }) => {
               </th>
               <td className="px-9 py-4">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(marketCap)}</td>
               <td className="px-6 py-4">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(price)}</td>
-              <td className="px-9 py-4 text-red-500">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(change)}</td>
+              {change<0 ? (
+                        <td className="px-9 py-4 text-red-500">{change}%</td>
+                    ):(
+                      <td className="px-9 py-4 text-green-500">{change}%</td>
+                    )
+              }
+              
             </tr>
           </tbody>
         ))}
